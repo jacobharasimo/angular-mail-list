@@ -1,0 +1,12 @@
+node_modules/
+.idea/
+*.css
+*.bundle.js
+*.map
+.tmp
+.sass-cache
+*.orig.*
+*.base.*
+*.remote.*
+*.local .*
+
