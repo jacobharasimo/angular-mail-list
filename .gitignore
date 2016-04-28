@@ -1,5 +1,6 @@
 node_modules/
 .idea/
+/app/assets
 *.css
 *.bundle.js
 *.map

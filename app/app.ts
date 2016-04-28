@@ -4,7 +4,18 @@ import * as angular from 'angular';
 /* App Styles */
 import './styles/main.scss';
 
-/*internal modules */
-import './core/assets';
+/* Internal Modules*/
+import Components from './components';
 
-const app = angular.module('app', []);
+const app = angular.module('app', [
+    'ngAnimate',
+    'ngResource',
+    'ngAria',
+    'ngMessages',
+    'ui.router',
+    'ui.bootstrap',
+    'formly',
+    'formlyBootstrap'
+]);
+
+Components(app);

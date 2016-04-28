@@ -7,7 +7,7 @@ var webpack = require('webpack'),
     APP = path.resolve('./app'),
     autoprefixer = require('autoprefixer');
 
-console.info('>> node environment is ', NODE_ENV);
+console.log('>> node environment is', NODE_ENV);
 
 module.exports = {
     context: APP,
