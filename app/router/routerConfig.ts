@@ -32,9 +32,16 @@ export default class RouteConfig{
                 }
             })
             .state('app.success',{
-                url:'/register',
+                url:'/success',
                 resolve:{},
-                views:{}
+                views:{
+                    'content@':{
+                        template: require('../components/success/success.html'),
+                        resolve:{},
+                        controller:'successCtrl',
+                        controllerAs:'success'
+                    }
+                }
             })
         ;
     }
