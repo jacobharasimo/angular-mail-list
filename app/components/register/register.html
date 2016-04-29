@@ -1,0 +1,22 @@
+<div class="inner cover">
+
+    <div class="panel-default subscription">
+        <div class="panel-heading">
+            <h2>Subscribe for awesome news!</h2>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="register.formly.onSubmit(register.formly)" name="register.formly.form" novalidate>
+                <formly-form model="register.formly.model"
+                             fields="register.formly.fields"
+                             form="register.formly.form"
+                             options="register.formly.options">
+                    <button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>
+                </formly-form>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+

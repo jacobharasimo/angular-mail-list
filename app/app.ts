@@ -5,6 +5,7 @@ import * as angular from 'angular';
 import './styles/main.scss';
 
 /* Internal Modules*/
+import Router from './router';
 import Components from './components';
 
 const app = angular.module('app', [
@@ -18,4 +19,5 @@ const app = angular.module('app', [
     'formlyBootstrap'
 ]);
 
+Router(app);
 Components(app);

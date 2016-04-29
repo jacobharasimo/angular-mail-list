@@ -16,7 +16,7 @@ module.exports = {
         vendor: './core/vendor'
     },
     output: {
-        publicPath: "/assets/",
+        publicPath: "http://localhost:8080/assets/",
         path: path.resolve(APP + '/assets/'),
         filename: '[name].bundle.js'
     },
@@ -51,6 +51,16 @@ module.exports = {
             {
                 test: /jquery\.js$/,
                 loader: 'expose?$!expose?jQuery'
+            },
+            {
+                test: /\.(eot(\?)?|woff|woff2|ttf|svg|png|jpg|gif)$/,
+                include: /\node_modules\//,
+                loader: 'url?name=[1].[ext]&limit=10000&regExp=node_modules/(.*)'
+            },
+            {
+                test: /\.(eot(\?)?|woff|woff2|ttf|svg|png|jpg|gif)$/,
+                exclude: /\node_modules\//,
+                loader: 'url?name=[path][name].[ext]&limit=10000'
             },
             {
                 test: /\.css$/,

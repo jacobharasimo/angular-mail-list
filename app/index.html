@@ -2,11 +2,50 @@
 <html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
-    <title>Angular Webpack</title>
+    <title>Mailchimp Subscription</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/main.css">
 </head>
 <body>
-<p>Angular is working: {{1 + 1 === 2}}</p>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <!--[if lte IE 10]>
+        <div id="browsehappy">
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Warning</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are using an <strong>outdated</strong> browser. Please <a
+                                    href="http://browsehappy.com/">upgrade
+                                your
+                                browser</a>
+                                to improve your experience.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="http://browsehappy.com/" target="_blank" class="btn btn-primary">Upgrade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <![endif]-->
+        <header class="masthead">
+            <h1 class="masthead-brand">Mailchimp Subscription</h1>
+        </header>
+        <main autoscroll="true" ui-view="content" id="content" class="cover-container" tabindex="-1" role="main"></main>
+        <div class="cover-container">
+            <footer class="mastfoot">
+                <div class="inner text-center">
+                    <p>If only we had a footer we could put it here...</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
 <script src="assets/vendor.bundle.js "></script>
 <script src="assets/main.bundle.js "></script>
 </body>
