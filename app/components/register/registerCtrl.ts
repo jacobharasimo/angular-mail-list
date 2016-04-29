@@ -1,4 +1,4 @@
-const apiKey = '7b6b7220d75c52bbed85c4114e6755b7';
+const apiKey = '7b6b7220d75c52bbed85c4114e6755b7-us4';
 const apiId = '7c7be738af';
 const config = {username: '', dc: '', u: '', id: ''};
 
@@ -13,24 +13,21 @@ export interface IFormly {
 
 export default class RegisterCtrl {
     formly:IFormly;
+    tryAgain:boolean=false;
+    isLoading:boolean = false;
     static $inject = [
         '$q',
-        '$http'
+        '$http',
+        '$state'
     ];
 
-    constructor($q, $http) {
+    constructor($q, $http,$state) {
         let formlyModel = {
             firstName: '',
             lastName: '',
             email: ''
         };
-        //seed
 
-        formlyModel={
-            firstName: 'me',
-            lastName: 'notu',
-            email: 'me@notu.ca'
-        };
         this.formly = {
             model: formlyModel,
             fields: [
@@ -68,33 +65,38 @@ export default class RegisterCtrl {
             form: {},
             options: {},
             onSubmit: (postForm)=> {
-                postForm.form.$setSubmitted();
                 let deferred = $q.defer();
-                let params = {
-                    apikey: apiKey,
-                    id: apiId,
-                    email: {
-                        email: formlyModel.email
-                    },
-                    merge_vars:{
-                        FNAME:formlyModel.firstName,
-                        LNAME:formlyModel.lastName
-                    }
-                };
-                var cors_api_host = 'cors-anywhere.herokuapp.com';
-                var cors_api_url = 'https://' + cors_api_host + '/';
-
-                let url = 'https://us4.api.mailchimp.com/2.0/lists/subscribe';
                 if (postForm.form.$valid) {
-                    $http({
-                        url: url,
-                        params: params,
-                        method: 'JSONP'
-                    }).then(function (data) {
-                        if (data.data.result === 'success') {
+                    this.isLoading=true;
+                    let params = {
+                        apikey: apiKey,
+                        id: apiId,
+                        email: {
+                            email: formlyModel.email
+                        },
+                        /*merge_vars are used to send extra data to mailchimp. however not knowing exactly what you called
+                         first and last name in mailchimp i assumed it was this*/
+                        merge_vars:{
+                            FNAME:formlyModel.firstName,
+                            LName:formlyModel.lastName
+                        }
+                    };
+                    var cors_api_host = 'cors-anywhere.herokuapp.com';
+                    var cors_api_url = 'https://' + cors_api_host + '/';
+
+                    let url = 'https://us4.api.mailchimp.com/2.0/lists/subscribe.json';
+                    return $http({
+                        url: cors_api_url+url,
+                        data: params,
+                        method: 'POST'
+                    }).then( (data) =>{
+                        this.isLoading=false;
+                        if (data.data) {
                             deferred.resolve(data.data);
+                            $state.go('app.success');
                         }
                         else {
+                            this.tryAgain = true;
                             deferred.reject(data.data);
                         }
 
@@ -102,11 +104,11 @@ export default class RegisterCtrl {
                         deferred.reject(err);
                     });
 
-                    deferred.resolve(true);
                 }
                 else {
                     deferred.resolve(false);
                 }
+                
                 return deferred.promise;
             }
         };

@@ -16,7 +16,8 @@ const app = angular.module('app', [
     'ui.router',
     'ui.bootstrap',
     'formly',
-    'formlyBootstrap'
+    'formlyBootstrap',
+    'angular-ladda'
 ]);
 
 Router(app);

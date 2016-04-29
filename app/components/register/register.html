@@ -10,10 +10,16 @@
                              fields="register.formly.fields"
                              form="register.formly.form"
                              options="register.formly.options">
-                    <button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</button>
+                    <button ladda="register.isLoading"
+                            type="submit" class="btn btn-default"
+                            data-style="expand-right"
+                            ng-click="vm.submit(vm.user)">Submit</button>
                 </formly-form>
             </form>
         </div>
+    </div>
+    <div class="alert alert-warning" role="alert" ng-if="register.tryAgain">
+        Something went wrong, try again
     </div>
 
 </div>

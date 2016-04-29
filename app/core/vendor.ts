@@ -10,3 +10,4 @@ import 'angular-resource';
 import 'angular-touch';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
+import 'angular-ladda';
