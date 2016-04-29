@@ -19,4 +19,6 @@ This is build with [node](https://nodejs.org/en/download/) and [webpack](https:/
 
 ##Troubleshooting
 if you receive an error that you cant find webpack run the following in console:
-`npm install -g webpack webpack-dev-server`
+`npm install -g webpack webpack-dev-server`  
+
+Tested only on PC, MAC use unsure
