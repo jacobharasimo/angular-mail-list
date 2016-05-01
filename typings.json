@@ -2,7 +2,11 @@
   "name": "angular-mail-list",
   "ambientDependencies": {
     "angular": "registry:dt/angular#1.5.0+20160412133217",
-    "node": "registry:dt/node#4.0.0+20160423143914"
+    "angular-formly": "registry:dt/angular-formly#7.2.3+20160316171810",
+    "angular-ui-bootstrap": "registry:dt/angular-ui-bootstrap#0.13.3+20160501125848",
+    "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160412134757",
+    "node": "registry:dt/node#4.0.0+20160423143914",
+    "webpack": "registry:dt/webpack#1.12.9+20160321060707"
   },
   "ambientDevDependencies": {
     "angular-mocks": "registry:dt/angular-mocks#1.3.0+20160425155016"
