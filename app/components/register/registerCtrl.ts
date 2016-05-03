@@ -1,12 +1,13 @@
-const apiKey = '7b6b7220d75c52bbed85c4114e6755b7-us4';
-const apiId = '7c7be738af';
-const config = {username: '', dc: '', u: '', id: ''};
-
+export interface ISubscriber{
+    firstName: string;
+    lastName: string;
+    email: string;
+}
 export interface IFormly {
-    model:Object;
+    model:ISubscriber;
     fields:AngularFormly.IFieldArray;
-    form:any;
-    options:Object;
+    form?:any;
+    options?:Object;
     onSubmit(form:IFormly):void;
 }
 
@@ -18,11 +19,12 @@ export default class RegisterCtrl {
     static $inject = [
         '$q',
         '$http',
-        '$state'
+        '$state',
+        'registerService'
     ];
 
-    constructor($q, $http,$state) {
-        let formlyModel = {
+    constructor($q, $http,$state, private registerService) {
+        let formlyModel:ISubscriber = {
             firstName: '',
             lastName: '',
             email: ''
@@ -62,60 +64,31 @@ export default class RegisterCtrl {
                     }
                 }
             ],
-            form: {},
-            options: {},
             onSubmit: (postForm)=> {
                 let deferred = $q.defer();
                 if (postForm.form.$valid) {
-                    this.isLoading=true;
-                    let params = {
-                        apikey: apiKey,
-                        id: apiId,
-                        email: {
-                            email: formlyModel.email
+                    this.isLoading = registerService.isLoading;
+                    this.tryAgain = registerService.hasError;
+                    this.registerService.register(postForm.model).then(
+                        (suc)=>{
+                            console.log(suc);
+
+                            //$state.go('app.success');
                         },
-                        /*merge_vars are used to send extra data to mailchimp. however not knowing exactly what you called
-                         first and last name in mailchimp i assumed it was this*/
-                        merge_vars:{
-                            FNAME:formlyModel.firstName,
-                            LName:formlyModel.lastName
+                        (err)=>{
+                            console.log(err);
                         }
-                    };
-                    var cors_api_host = 'cors-anywhere.herokuapp.com';
-                    var cors_api_url = 'https://' + cors_api_host + '/';
-
-                    let url = 'https://us4.api.mailchimp.com/2.0/lists/subscribe.json';
-                    return $http({
-                        url: cors_api_url+url,
-                        data: params,
-                        method: 'POST'
-                    }).then( (data) =>{
-                        this.isLoading=false;
-                        if (data.data) {
-                            deferred.resolve(data.data);
-                            $state.go('app.success');
-                        }
-                        else {
-                            this.tryAgain = true;
-                            deferred.reject(data.data);
-                        }
-
-                    }, function (err) {
-                        deferred.reject(err);
-                    });
+                    );
 
                 }
                 else {
+                    this.tryAgain = true;
                     deferred.resolve(false);
                 }
-                
+
                 return deferred.promise;
             }
         };
 
-    }
-
-    subscribe(data) {
-        var params = angular.extend(data, {u: config.u, id: config.id, c: 'JSON_CALLBACK'});
     }
 }
