@@ -1,4 +1,5 @@
-import {ISubscriber} from "./registerCtrl";
+import {ISubscriber} from './registerCtrl';
+
 
 export default class RegisterService {
     static $inject = [
@@ -9,14 +10,14 @@ export default class RegisterService {
     corsApiUrl:string;
     apiKey:string;
     apiId:string;
-    isLoading:boolean = true;
-    hasError:boolean = false;
 
-    constructor(private $q:ng.IQService, private $http:ng.IHttpService) {
+
+    constructor(private $http:ng.IHttpService, private $q:ng.IQService) {
         this.corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
         this.apiKey = '7b6b7220d75c52bbed85c4114e6755b7-us4';
         this.apiId = '7c7be738af';
     }
+
 
     register(person:ISubscriber) {
         let deferred = this.$q.defer();
@@ -34,26 +35,22 @@ export default class RegisterService {
             }
         };
         let url = 'https://us4.api.mailchimp.com/2.0/lists/subscribe.json';
-
-        return this.$http({
+        this.$http({
             url: this.corsApiUrl + url,
             data: params,
             method: 'POST'
         }).then((data) => {
-            this.isLoading = false;
             if (data.data) {
                 deferred.resolve(data.data);
             }
             else {
-                this.hasError = true;
                 deferred.reject(data.data);
             }
 
         }, (err) => {
-            this.isLoading = false;
-            this.hasError = true;
             deferred.reject(err);
         });
+        return deferred.promise;
 
     }
 }

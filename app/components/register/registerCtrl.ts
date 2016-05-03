@@ -18,12 +18,11 @@ export default class RegisterCtrl {
     isLoading:boolean = false;
     static $inject = [
         '$q',
-        '$http',
         '$state',
         'registerService'
     ];
 
-    constructor($q, $http,$state, private registerService) {
+    constructor($q, $state, private registerService) {
         let formlyModel:ISubscriber = {
             firstName: '',
             lastName: '',
@@ -67,22 +66,27 @@ export default class RegisterCtrl {
             onSubmit: (postForm)=> {
                 let deferred = $q.defer();
                 if (postForm.form.$valid) {
-                    this.isLoading = registerService.isLoading;
-                    this.tryAgain = registerService.hasError;
+                    this.isLoading = true;
+                    this.tryAgain = false;
                     this.registerService.register(postForm.model).then(
                         (suc)=>{
                             console.log(suc);
-
-                            //$state.go('app.success');
+                            this.isLoading = false;
+                            if (suc) {
+                                $state.go('app.success');
+                            }
+                            this.tryAgain = true;
                         },
                         (err)=>{
+                            this.isLoading = false;
+                            this.tryAgain = true;
                             console.log(err);
                         }
                     );
 
                 }
                 else {
-                    this.tryAgain = true;
+                    this.isLoading = false;
                     deferred.resolve(false);
                 }
 
