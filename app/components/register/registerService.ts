@@ -9,10 +9,10 @@ export default class RegisterService {
     corsApiUrl:string;
     apiKey:string;
     apiId:string;
-    isLoading:boolean=true;
-    hasError:boolean=false;
+    isLoading:boolean = true;
+    hasError:boolean = false;
 
-    constructor(private $q:ng.IQService,private $http:ng.IHttpService) {
+    constructor(private $q:ng.IQService, private $http:ng.IHttpService) {
         this.corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
         this.apiKey = '7b6b7220d75c52bbed85c4114e6755b7-us4';
         this.apiId = '7c7be738af';
