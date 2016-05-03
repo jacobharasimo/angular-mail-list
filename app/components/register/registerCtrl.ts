@@ -63,14 +63,13 @@ export default class RegisterCtrl {
                     }
                 }
             ],
-            onSubmit: (postForm)=> {
+            onSubmit: (postForm:IFormly)=> {
                 let deferred = $q.defer();
                 if (postForm.form.$valid) {
                     this.isLoading = true;
                     this.tryAgain = false;
                     this.registerService.register(postForm.model).then(
                         (suc)=>{
-                            console.log(suc);
                             this.isLoading = false;
                             if (suc) {
                                 $state.go('app.success');
@@ -80,7 +79,6 @@ export default class RegisterCtrl {
                         (err)=>{
                             this.isLoading = false;
                             this.tryAgain = true;
-                            console.log(err);
                         }
                     );
 

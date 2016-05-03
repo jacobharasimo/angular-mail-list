@@ -1,9 +1,10 @@
-export default class SuccessCtrl{
+export default class SuccessCtrl {
     static $inject = [
-        
+        '$state'
     ];
-    constructor(){
 
+    constructor($state) {
+        $state.go('app.register');
     }
 
 }

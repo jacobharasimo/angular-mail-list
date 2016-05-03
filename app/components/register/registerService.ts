@@ -51,6 +51,5 @@ export default class RegisterService {
             deferred.reject(err);
         });
         return deferred.promise;
-
     }
 }
