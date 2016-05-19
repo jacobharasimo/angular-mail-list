@@ -1,6 +1,6 @@
 {
   "name": "angular-mail-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular mailing list sample",
   "repository": {
     "type": "git",
@@ -8,8 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "preinstall":"npm i -g typings webpack",
-    "install":"typings install",
+    "preinstall": "npm i -g typings webpack",
+    "install": "typings install",
     "start": "node_modules/.bin/webpack-dev-server --content-base app --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
