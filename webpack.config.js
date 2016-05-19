@@ -20,6 +20,17 @@ module.exports = {
         path: path.resolve(APP + '/assets/'),
         filename: '[name].bundle.js'
     },
+    devServer: {
+        proxy: {
+            
+        },
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        },
+        historyApiFallback: true,
+        host: '0.0.0.0'
+    },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
         new webpack.HotModuleReplacementPlugin(),
