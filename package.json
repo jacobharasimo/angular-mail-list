@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "preinstall":"npm i -g typings webpack",
     "start": "node_modules/.bin/webpack-dev-server --content-base app --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
