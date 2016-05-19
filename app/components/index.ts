@@ -7,4 +7,4 @@ export default(app) =>{
     RegisterPage(app);
     SuccessPage(app);
     FormlyConfig(app);
-}
+};

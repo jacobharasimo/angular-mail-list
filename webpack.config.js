@@ -16,13 +16,13 @@ module.exports = {
         vendor: './core/vendor'
     },
     output: {
-        publicPath: "http://localhost:8080/assets/",
         path: path.resolve(APP + '/assets/'),
+        publicPath: "/assets/",
         filename: '[name].bundle.js'
     },
     devServer: {
         proxy: {
-            
+
         },
         watchOptions: {
             aggregateTimeout: 300,
