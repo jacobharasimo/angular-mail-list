@@ -93,5 +93,20 @@ module.exports = {
     postcss: [
         autoprefixer({browsers: ['last 2 versions']})
     ],
-    devtool: !isProd ? 'source-map' : null
+    devtool: !isProd ? 'source-map' : 'hidden-source-map'
 };
+
+if (isProd) {
+    console.log('adding production customization');
+    module.exports.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                drop_console: true
+            },
+            //mangle: true,
+            //beautify: false,
+            sourceMap: true
+        })
+    );
+}

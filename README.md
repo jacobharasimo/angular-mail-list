@@ -21,7 +21,7 @@ This is build with [node](https://nodejs.org/en/download/) and [webpack](https:/
 if you receive an error that you cant find webpack run the following in console:
 `npm install -g webpack webpack-dev-server`  
 
-Tested only on PC, MAC use unsure
+##Mac
+Development was done and tested on Windows, Mac usage is unsure.
 
-##Mac Usage
-should work but is accessed at: http://127.0.0.1:8080/
+Mac usage may require some customization, however ``npm start`` should launch the site and be accessible at: http://127.0.0.1:8080/
